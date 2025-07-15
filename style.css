@@ -253,6 +253,7 @@
   background-size: cover;
   background-position: center;
   transition: transform 0.3s ease;
+  margin: 0 auto;
 }
 
 .card-title {
@@ -337,16 +338,21 @@
 
 .collaboration-email a {
   font-family: var(--font-family-secondary);
-  color: var(--primary-color);
+  color: #272727;
   font-weight: 600;
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.4;
+  text-decoration: none;
+}
+
+.collaboration-icon {
+  transform: rotate(40deg);
 }
 
 /* Footer - fluid design */
 .footer-heading {
   font-family: var(--font-family-primary);
-  font-weight: 600;
+  font-weight: 300;
   font-size: clamp(1.25rem, 2vw, 1.5rem);
   line-height: 1.3;
 }
@@ -361,7 +367,7 @@
 
 .resume-link {
   font-family: var(--font-family-secondary);
-  font-weight: 600;
+  font-weight: 300;
   font-size: clamp(0.875rem, 1.2vw, 1rem);
   line-height: 1.4;
   transition: background-color 0.3s ease;
@@ -373,9 +379,10 @@
 }
 
 .footer a {
-  color: var(--primary-color);
+  color: #272727;
   font-size: clamp(0.875rem, 1.2vw, 1rem);
   line-height: 1.4;
+  text-decoration: none;
 }
 
 .footer a:hover {
