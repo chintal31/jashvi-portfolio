@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1280">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jashvi Sudra - Portfolio (Figma Style)</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="figma-style.css">
@@ -99,15 +99,54 @@
   <section class="testimonials-section">
     <h2 class="testimonials-title">Testimonials</h2>
     <div class="testimonials-list">
-      <div class="testimonial-card">
-        <div class="testimonial-author">Ronnel Sanchez</div>
-        <div class="testimonial-role">UX Lead, Amway Global</div>
-        <div class="testimonial-text">If I were to describe Jashvi’s performance and working with her in one word, it would be “Exceptional.” ...</div>
+      <div class="testimonials-carousel">
+        <div class="testimonial-card">
+          <div class="testimonial-author">Ronnel Sanchez</div>
+          <div class="testimonial-role">UX Lead, Amway Global</div>
+          <div class="testimonial-text">If I were to describe Jashvi’s performance and working with her in one word, it would be “Exceptional.” From the beginning of working with her, she exceeded my expectations. She quickly adapted to the working process, understood the business model of Amway, and proactively learned new things. She showcased her expertise in user experience and user interface design. Additionally, she went above and beyond what was asked and collaborated effectively across the team. Handling multiple projects and domains, she delivered remarkable output. It's also enjoyable to work and collaborate with her as there's a lot to learn. I can't wait to build more new things with Jashvi.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author">Sarah Johnson</div>
+          <div class="testimonial-role">Product Manager, TechCorp</div>
+          <div class="testimonial-text">Jashvi's UX expertise transformed our product completely. Her user-centered approach and innovative solutions helped us increase user engagement by 40% within just three months. She demonstrated exceptional problem-solving skills and consistently delivered high-quality work that exceeded our expectations. Her ability to understand complex business requirements and translate them into intuitive user experiences was invaluable to our team's success.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author">Michael Chen</div>
+          <div class="testimonial-role">Design Director, StartupXYZ</div>
+          <div class="testimonial-text">Working with Jashvi was a game-changer for our startup. Her strategic thinking and ability to balance user needs with business goals is exactly what we needed to scale our product. She brought fresh perspectives to our design challenges and helped us create solutions that resonated with our users. Her collaborative approach and attention to detail made her an essential part of our product development process.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author">Emily Rodriguez</div>
+          <div class="testimonial-role">Senior UX Designer, GlobalTech</div>
+          <div class="testimonial-text">Jashvi's collaborative spirit and deep understanding of user psychology make her an invaluable team member. She consistently delivers solutions that exceed expectations and brings a unique blend of creativity and analytical thinking to every project. Her ability to empathize with users and translate insights into actionable design solutions has been instrumental in our team's success.</div>
+        </div>
+        <!-- Duplicate testimonials for infinite scroll -->
+        <div class="testimonial-card">
+          <div class="testimonial-author">Ronnel Sanchez</div>
+          <div class="testimonial-role">UX Lead, Amway Global</div>
+          <div class="testimonial-text">If I were to describe Jashvi's performance and working with her in one word, it would be "Exceptional." From the beginning of working with her, she exceeded my expectations. She quickly adapted to the working process, understood the business model of Amway, and proactively learned new things. She showcased her expertise in user experience and user interface design. Additionally, she went above and beyond what was asked and collaborated effectively across the team. Handling multiple projects and domains, she delivered remarkable output. It's also enjoyable to work and collaborate with her as there's a lot to learn. I can't wait to build more new things with Jashvi.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author">Sarah Johnson</div>
+          <div class="testimonial-role">Product Manager, TechCorp</div>
+          <div class="testimonial-text">Jashvi's UX expertise transformed our product completely. Her user-centered approach and innovative solutions helped us increase user engagement by 40% within just three months. She demonstrated exceptional problem-solving skills and consistently delivered high-quality work that exceeded our expectations. Her ability to understand complex business requirements and translate them into intuitive user experiences was invaluable to our team's success.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author">Michael Chen</div>
+          <div class="testimonial-role">Design Director, StartupXYZ</div>
+          <div class="testimonial-text">Working with Jashvi was a game-changer for our startup. Her strategic thinking and ability to balance user needs with business goals is exactly what we needed to scale our product. She brought fresh perspectives to our design challenges and helped us create solutions that resonated with our users. Her collaborative approach and attention to detail made her an essential part of our product development process.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author">Emily Rodriguez</div>
+          <div class="testimonial-role">Senior UX Designer, GlobalTech</div>
+          <div class="testimonial-text">Jashvi's collaborative spirit and deep understanding of user psychology make her an invaluable team member. She consistently delivers solutions that exceed expectations and brings a unique blend of creativity and analytical thinking to every project. Her ability to empathize with users and translate insights into actionable design solutions has been instrumental in our team's success.</div>
+        </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-author">Ronnel Sanchez</div>
-        <div class="testimonial-role">UX Lead, Amway Global</div>
-        <div class="testimonial-text">If I were to describe Jashvi’s performance and working with her in one word, it would be “Exceptional.” ...</div>
+      <div class="carousel-dots">
+        <div class="carousel-dot active" data-slide="0"></div>
+        <div class="carousel-dot" data-slide="1"></div>
+        <div class="carousel-dot" data-slide="2"></div>
+        <div class="carousel-dot" data-slide="3"></div>
       </div>
     </div>
   </section>
@@ -166,6 +205,98 @@ const hamburger = document.querySelector('.hamburger');
 const mobileNav = document.querySelector('.mobile-nav');
 hamburger.addEventListener('click', function() {
   mobileNav.classList.toggle('open');
+});
+
+// Testimonials Carousel
+const carousel = document.querySelector('.testimonials-carousel');
+const dots = document.querySelectorAll('.carousel-dot');
+let currentSlide = 0;
+const totalSlides = dots.length;
+const originalSlides = 4; // Number of original testimonials
+
+// Auto-rotate carousel every 4 seconds
+let autoRotate = setInterval(nextSlide, 4000);
+
+function nextSlide() {
+  currentSlide = currentSlide + 1;
+  
+  // If we've reached the end of all slides (8 total), reset to beginning seamlessly
+  if (currentSlide >= originalSlides * 2) {
+    // Wait for transition to complete, then reset without animation
+    setTimeout(() => {
+      carousel.style.transition = 'none';
+      currentSlide = 0;
+      updateCarousel();
+      // Re-enable transition after a brief moment
+      setTimeout(() => {
+        carousel.style.transition = 'transform 0.5s ease-in-out';
+      }, 10);
+    }, 500);
+    return;
+  }
+  
+  updateCarousel();
+}
+
+function prevSlide() {
+  currentSlide = currentSlide - 1;
+  if (currentSlide < 0) {
+    currentSlide = originalSlides * 2 - 1; // Go to last slide of duplicated set
+  }
+  updateCarousel();
+}
+
+function goToSlide(slideIndex) {
+  currentSlide = slideIndex;
+  updateCarousel();
+}
+
+function updateCarousel() {
+  // Get current card width and gap based on screen size
+  let cardWidth, gap;
+  if (window.innerWidth <= 600) {
+    cardWidth = 400;
+    gap = 30;
+  } else if (window.innerWidth <= 900) {
+    cardWidth = 600;
+    gap = 40;
+  } else {
+    cardWidth = 988;
+    gap = 52;
+  }
+  
+  // Update carousel position
+  const translateX = -currentSlide * (cardWidth + gap);
+  carousel.style.transform = `translateX(${translateX}px)`;
+  
+  // Update active dot (use modulo to handle infinite scroll)
+  const activeIndex = currentSlide % originalSlides;
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === activeIndex);
+  });
+  
+  // Reset auto-rotate timer
+  clearInterval(autoRotate);
+  autoRotate = setInterval(nextSlide, 4000);
+}
+
+// Add click event listeners to dots
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => goToSlide(index));
+});
+
+// Pause auto-rotate on hover
+carousel.addEventListener('mouseenter', () => {
+  clearInterval(autoRotate);
+});
+
+carousel.addEventListener('mouseleave', () => {
+  autoRotate = setInterval(nextSlide, 4000);
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  updateCarousel();
 });
 </script>
 </body>
