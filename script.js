@@ -1,11 +1,4 @@
-// Hamburger menu toggle
-const hamburger = document.querySelector(".hamburger");
-const mobileNav = document.querySelector(".mobile-nav");
-hamburger.addEventListener("click", function () {
-  mobileNav.classList.toggle("open");
-});
-
-// Testimonials Carousel
+// Testimonials Carousel - Bootstrap Compatible
 const carousel = document.querySelector(".testimonials-carousel");
 const dots = document.querySelectorAll(".carousel-dot");
 let currentSlide = 0;
@@ -27,7 +20,7 @@ function nextSlide() {
       updateCarousel();
       // Re-enable transition after a brief moment
       setTimeout(() => {
-        carousel.style.transition = "transform 0.5s ease-in-out";
+        carousel.style.transition = "transform 0.5s ease";
       }, 10);
     }, 500);
     return;
@@ -50,22 +43,19 @@ function goToSlide(slideIndex) {
 }
 
 function updateCarousel() {
-  // Get current card width and gap based on screen size
-  let cardWidth, gap;
+  // Calculate slide width based on Bootstrap grid system
+  let slideWidth;
   if (window.innerWidth <= 600) {
-    cardWidth = 400;
-    gap = 30;
+    slideWidth = 100; // Full width on mobile
   } else if (window.innerWidth <= 900) {
-    cardWidth = 600;
-    gap = 40;
+    slideWidth = 50; // Half width on tablet
   } else {
-    cardWidth = 988;
-    gap = 52;
+    slideWidth = 25; // Quarter width on desktop
   }
 
   // Update carousel position
-  const translateX = -currentSlide * (cardWidth + gap);
-  carousel.style.transform = `translateX(${translateX}px)`;
+  const translateX = -currentSlide * slideWidth;
+  carousel.style.transform = `translateX(${translateX}%)`;
 
   // Update active dot (use modulo to handle infinite scroll)
   const activeIndex = currentSlide % originalSlides;
@@ -94,5 +84,10 @@ carousel.addEventListener("mouseleave", () => {
 
 // Handle window resize
 window.addEventListener("resize", () => {
+  updateCarousel();
+});
+
+// Initialize carousel on page load
+document.addEventListener("DOMContentLoaded", () => {
   updateCarousel();
 });
