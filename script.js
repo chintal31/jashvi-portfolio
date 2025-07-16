@@ -12,7 +12,7 @@ function nextSlide() {
   currentSlide = currentSlide + 1;
 
   // If we've reached the end of all slides (8 total), reset to beginning seamlessly
-  if (currentSlide >= originalSlides * 2) {
+  if (currentSlide >= originalSlides) {
     // Wait for transition to complete, then reset without animation
     setTimeout(() => {
       carousel.style.transition = "none";
